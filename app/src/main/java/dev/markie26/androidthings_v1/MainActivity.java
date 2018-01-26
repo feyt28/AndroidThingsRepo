@@ -60,19 +60,21 @@ public class MainActivity extends Activity {
             // Step 2. Configure as an output.
             mLedGpio.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
 
+            /*
             Log.i(TAG, "Registering button driver");
             mButtonInputDriver = new ButtonInputDriver(GPIO_PIN_BUTTON,
                     Button.LogicState.PRESSED_WHEN_LOW, KeyEvent.KEYCODE_SPACE);
-            mButtonInputDriver.register();
+            mButtonInputDriver.register();*/
 
             // Step 4. Repeat using a handler.
-            //mHandler.post(mBlinkRunnable);
+            mHandler.post(mBlinkRunnable);
 
         } catch (IOException e) {
             Log.e(TAG, "Error on PeripheralIO API", e);
         }
     }
 
+    /*
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
@@ -101,16 +103,17 @@ public class MainActivity extends Activity {
         }catch (IOException e){
             Log.e(TAG, "Error Updating GPIO value", e);
         }
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
         // Step 4. Remove handler events on close.
-        //mHandler.removeCallbacks(mBlinkRunnable);
+        mHandler.removeCallbacks(mBlinkRunnable);
 
         // Step 5. Close the resource.
+        /*
         if(mButtonInputDriver != null){
             mButtonInputDriver.unregister();
             try{
@@ -120,7 +123,7 @@ public class MainActivity extends Activity {
             } finally{
                 mButtonInputDriver = null;
             }
-        }
+        }*/
 
         if (mLedGpio != null) {
             try {
