@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 
+import com.google.android.things.contrib.driver.button.Button;
+import com.google.android.things.contrib.driver.button.ButtonInputDriver;
 import com.google.android.things.pio.Gpio;
 import com.google.android.things.pio.PeripheralManagerService;
 
@@ -33,11 +36,15 @@ public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int INTERVAL_BETWEEN_BLINKS_MS = 500;
-    private static final String GPIO_PIN_NAME = "BCM13";
+    private static final String GPIO_PIN_LED = "BCM13";
+    private static final String GPIO_PIN_BUTTON = "BCM21";
 
     // Physical Pin #33 on Raspberry Pi3
     private Handler mHandler = new Handler();
     private Gpio mLedGpio;
+
+    // Drivers
+    private ButtonInputDriver mButtonInputDriver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +54,52 @@ public class MainActivity extends Activity {
         // Step 1. Create GPIO connection.
         PeripheralManagerService service = new PeripheralManagerService();
         try {
-            mLedGpio = service.openGpio(GPIO_PIN_NAME);
+
+            Log.i(TAG, "Configuring GPIO pins");
+            mLedGpio = service.openGpio(GPIO_PIN_LED);
             // Step 2. Configure as an output.
             mLedGpio.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
+
+            Log.i(TAG, "Registering button driver");
+            mButtonInputDriver = new ButtonInputDriver(GPIO_PIN_BUTTON,
+                    Button.LogicState.PRESSED_WHEN_LOW, KeyEvent.KEYCODE_SPACE);
+            mButtonInputDriver.register();
+
             // Step 4. Repeat using a handler.
-            mHandler.post(mBlinkRunnable);
+            //mHandler.post(mBlinkRunnable);
+
         } catch (IOException e) {
             Log.e(TAG, "Error on PeripheralIO API", e);
+        }
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_SPACE){
+            setLedValue(true);
+            return true;
+        }
+
+        return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_SPACE){
+            setLedValue(false);
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void setLedValue(boolean value){
+        try{
+            mLedGpio.setValue(value);
+        }catch (IOException e){
+            Log.e(TAG, "Error Updating GPIO value", e);
         }
     }
 
@@ -62,13 +108,27 @@ public class MainActivity extends Activity {
         super.onDestroy();
 
         // Step 4. Remove handler events on close.
-        mHandler.removeCallbacks(mBlinkRunnable);
+        //mHandler.removeCallbacks(mBlinkRunnable);
+
         // Step 5. Close the resource.
+        if(mButtonInputDriver != null){
+            mButtonInputDriver.unregister();
+            try{
+                mButtonInputDriver.close();
+            }catch (IOException e){
+                Log.e(TAG, "Error closing Button driver", e);
+            } finally{
+                mButtonInputDriver = null;
+            }
+        }
+
         if (mLedGpio != null) {
             try {
                 mLedGpio.close();
             } catch (IOException e) {
                 Log.e(TAG, "Error on PeripheralIO API", e);
+            } finally{
+                mLedGpio = null;
             }
         }
     }
