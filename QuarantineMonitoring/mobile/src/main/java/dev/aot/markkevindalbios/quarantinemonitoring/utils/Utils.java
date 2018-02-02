@@ -10,5 +10,4 @@ public class Utils {
     public static final String ADMIN_USER = "admin";
     public static final String ADMIN_PASS = "admin123";
 
-
 }
