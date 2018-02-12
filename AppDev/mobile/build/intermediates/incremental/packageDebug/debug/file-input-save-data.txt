@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Tue Jan 30 11:03:24 PHT 2018
+0.baseType=DIRECTORY
+0.base=/Users/markie26/Documents/Android/AndroidThingsRepo/AppDev/mobile/build/intermediates/transforms/dexMerger/debug/0
+0.path=classes.dex
+0.set=DEX
+count=1
