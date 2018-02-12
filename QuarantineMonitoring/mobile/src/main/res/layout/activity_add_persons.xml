@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/image"
+        android:background="@mipmap/ic_launcher_round"
+        android:layout_marginBottom="10dp"
+        android:onClick="addImage"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/fName"
+        android:hint="@string/first_name"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/mName"
+        android:hint="@string/middle_name"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/lName"
+        android:hint="@string/last_name"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/age"
+        android:gravity="center"
+        android:inputType="numberSigned"
+        android:hint="@string/age"/>
+
+    <ToggleButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gender"
+        android:id="@+id/gender"
+        android:textOn="Female"
+        android:textOff="Male"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add"
+        android:text="Add Person"
+        android:onClick="addPerson"/>
+
+</LinearLayout>
