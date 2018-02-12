@@ -1,0 +1,80 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "16,-1,-1,-1,-1",
+                        "startColumns": "4,-1,-1,-1,-1",
+                        "startOffsets": "649,-1,-1,-1,-1",
+                        "endColumns": "50,-1,-1,-1,-1",
+                        "endOffsets": "695,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "110,161,244,294,392",
+                        "endColumns": "50,82,49,97,83",
+                        "endOffsets": "156,239,289,387,471"
+                    }
+                },
+                {
+                    "source": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/src/main/res/values/colors.xml",
+                    "from": {
+                        "startLines": "-1",
+                        "startColumns": "-1",
+                        "startOffsets": "-1"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "54",
+                        "endOffsets": "105"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "16,19,17,20,18",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "649,834,700,917,750",
+                        "endColumns": "50,82,49,97,83",
+                        "endOffsets": "695,912,745,1010,829"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "424,475,558,608,706",
+                        "endColumns": "50,82,49,97,83",
+                        "endOffsets": "470,553,603,701,785"
+                    }
+                },
+                {
+                    "source": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/src/main/res/values/colors.xml",
+                    "from": {
+                        "startLines": "17",
+                        "startColumns": "4",
+                        "startOffsets": "650",
+                        "endColumns": "54",
+                        "endOffsets": "700"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "54",
+                        "endOffsets": "105"
+                    }
+                }
+            ]
+        }
+    ]
+}

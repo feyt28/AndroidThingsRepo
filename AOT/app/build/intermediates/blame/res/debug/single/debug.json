@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/res/merged/debug/drawable_cat.jpeg.flat",
+        "source": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/src/main/res/drawable/cat.jpeg"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/res/merged/debug/drawable_mario.jpg.flat",
+        "source": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/src/main/res/drawable/mario.jpg"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/build/intermediates/res/merged/debug/drawable_bomberman.jpg.flat",
+        "source": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/src/main/res/drawable/bomberman.jpg"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/res/merged/debug/drawable_inuyasha.jpg.flat",
+        "source": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/src/main/res/drawable/inuyasha.jpg"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/build/intermediates/res/merged/debug/drawable_mvsb.png.flat",
+        "source": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/src/main/res/drawable/mvsb.png"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/res/merged/debug/drawable_mvsb.png.flat",
+        "source": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/src/main/res/drawable/mvsb.png"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/build/intermediates/res/merged/debug/drawable_mario.jpg.flat",
+        "source": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/src/main/res/drawable/mario.jpg"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/res/merged/debug/drawable_bomberman.jpg.flat",
+        "source": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/src/main/res/drawable/bomberman.jpg"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/build/intermediates/res/merged/debug/layout_activity_camera.xml.flat",
+        "source": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/src/main/res/layout/activity_camera.xml"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/build/intermediates/res/merged/debug/drawable_inuyasha.jpg.flat",
+        "source": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/src/main/res/drawable/inuyasha.jpg"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/build/intermediates/res/merged/debug/drawable_cat.jpeg.flat",
+        "source": "/Users/markie26/Documents/Android/sample-tensorflow-imageclassifier/app/src/main/res/drawable/cat.jpeg"
+    },
+    {
+        "merged": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/res/merged/debug/layout_activity_camera.xml.flat",
+        "source": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/src/main/res/layout/activity_camera.xml"
+    }
+]
