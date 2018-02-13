@@ -1,5 +1,6 @@
 package dev.aot.markkevindalbios.quarantinemonitoring;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,22 +10,20 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.io.ByteArrayOutputStream;
 
@@ -41,7 +40,7 @@ public class AddPersons extends AppCompatActivity {
     private static final int CAMERA_INTENT = 0;
 
     //Views
-    private ImageView image;
+    private CircularImageView image;
     private EditText fNameView;
     private EditText mNameView;
     private EditText lNameView;
@@ -63,7 +62,7 @@ public class AddPersons extends AppCompatActivity {
     }
 
     private void initViews() {
-        image = (ImageView) findViewById(R.id.image);
+        image = (CircularImageView) findViewById(R.id.image);
         fNameView = (EditText) findViewById(R.id.fName);
         lNameView = (EditText) findViewById(R.id.lName);
         mNameView = (EditText) findViewById(R.id.mName);
@@ -80,6 +79,11 @@ public class AddPersons extends AppCompatActivity {
         final String gender = genderView.getText().toString();
 
         if (imageBitmap != null) {
+            final ProgressDialog progressDialog = new ProgressDialog(this, R.style.Theme_AppCompat_DayNight_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("Adding Person");
+            progressDialog.show();
+
             Uri uri = getImageUri(this, imageBitmap);
             StorageReference filepath = storageReference.child("QuarantineImage").child(lName + ", " + fName);
             filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -94,13 +98,24 @@ public class AddPersons extends AppCompatActivity {
                     dbRef.setValue(person).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
+                            progressDialog.dismiss();
+
                             Toast.makeText(getApplicationContext(), "Added Successfully", Toast.LENGTH_SHORT).show();
                             clearInputs();
                             AddPersons.this.finish();
                         }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "Please try again!", Toast.LENGTH_SHORT).show();
+                        }
                     });
+
                 }
             });
+        }else{
+            Toast.makeText(getApplicationContext(), "Please try again!", Toast.LENGTH_SHORT).show();
         }
     }
 

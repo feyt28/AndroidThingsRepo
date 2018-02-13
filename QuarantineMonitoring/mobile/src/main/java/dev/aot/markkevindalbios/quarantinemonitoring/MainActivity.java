@@ -7,7 +7,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,22 +46,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         database = FirebaseDatabase.getInstance();
 
-        loadQuarantineList();
-        adapter = new QuarantineListAdapter(this, list);
-
         listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Person person = (Person) adapterView.getItemAtPosition(position);
+                Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
+                profileIntent.putExtra("profile", person);
+                startActivity(profileIntent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadQuarantineList();
     }
 
     private void loadQuarantineList(){
-        list = new ArrayList<Person>();
+
         dbRef = database.getReference("Quarantines");
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                list = new ArrayList<Person>();
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     Person person = postSnapshot.getValue(Person.class);
                     list.add(person);
