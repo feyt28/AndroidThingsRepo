@@ -33,6 +33,7 @@ android {
 // Download model zip file into ../../assets directory
 // unzip it to demo project's own ./assets directory
 import de.undercouch.gradle.tasks.download.Download
+
 task downloadFile(type: Download) {
     src 'https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip'
     dest projectDir.toString() + '/../../assets/inception.zip'
@@ -58,6 +59,9 @@ repositories {
 dependencies {
     implementation 'com.google.android.things.contrib:driver-button:0.3'
     implementation 'org.tensorflow:tensorflow-android:1.2.0'
+    implementation 'com.google.firebase:firebase-database:11.0.4'
     compileOnly 'com.google.android.things:androidthings:0.6-devpreview'
     compile 'de.hdodenhof:circleimageview:2.2.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

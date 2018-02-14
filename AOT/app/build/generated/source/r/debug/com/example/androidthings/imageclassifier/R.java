@@ -59,15 +59,27 @@ public final class R {
     public static final int result3=0x7f040004;
     public static final int results=0x7f040005;
   }
+  public static final class integer {
+    public static final int google_play_services_version=0x7f050000;
+  }
   public static final class layout {
-    public static final int activity_camera=0x7f050000;
+    public static final int activity_camera=0x7f060000;
   }
   public static final class string {
-    public static final int app_name=0x7f060000;
-    public static final int camera_error=0x7f060001;
-    public static final int description_info=0x7f060002;
-    public static final int help_message=0x7f060003;
-    public static final int request_permission=0x7f060004;
+    public static final int app_name=0x7f070000;
+    public static final int camera_error=0x7f070001;
+    public static final int common_google_play_services_unknown_issue=0x7f070002;
+    public static final int default_web_client_id=0x7f070003;
+    public static final int description_info=0x7f070004;
+    public static final int firebase_database_url=0x7f070005;
+    public static final int gcm_defaultSenderId=0x7f070006;
+    public static final int google_api_key=0x7f070007;
+    public static final int google_app_id=0x7f070008;
+    public static final int google_crash_reporting_api_key=0x7f070009;
+    public static final int google_storage_bucket=0x7f07000a;
+    public static final int help_message=0x7f07000b;
+    public static final int project_id=0x7f07000c;
+    public static final int request_permission=0x7f07000d;
   }
   public static final class styleable {
     /**

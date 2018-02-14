@@ -41,6 +41,8 @@ import com.google.android.things.contrib.driver.button.Button;
 import com.google.android.things.contrib.driver.button.ButtonInputDriver;
 import com.google.android.things.pio.Gpio;
 import com.google.android.things.pio.PeripheralManagerService;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.List;
@@ -100,6 +102,12 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
             @Override
             public void onClick(View v) {
                 if (mReady.get()) {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference settingsRef = database.getReference("Settings");
+
+                    //Time in minutes
+                    settingsRef.child("Time Trigger").setValue(5);
+
                     Log.i(TAG, "Taking photo");
                     setReady(false);
                     mBackgroundHandler.post(mBackgroundClickHandler);
@@ -159,6 +167,14 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
             mTensorFlowClassifier = new TensorFlowImageClassifier(ImageClassifierActivity.this);
 
             setReady(true);
+        }
+    };
+
+    //TODO create handler for the timer
+    private Runnable mBackgroundTimerHandler = new Runnable() {
+        @Override
+        public void run() {
+            Log.d("Timer", "Please face the camera and capture!");
         }
     };
 
