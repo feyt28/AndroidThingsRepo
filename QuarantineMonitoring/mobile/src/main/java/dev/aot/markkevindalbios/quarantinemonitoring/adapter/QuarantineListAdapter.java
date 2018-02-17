@@ -63,7 +63,7 @@ public class QuarantineListAdapter extends BaseAdapter {
         if(getCount() > 0){
             person = (Person) getItem(position);
             holder.nameView.setText(person.getlName() + ", " + person.getfName());
-            holder.ageView.setText(""+person.getAge());
+            holder.dateView.setText(""+person.getDateOfBirth());
 
             Picasso.with(context)
                     .load(person.getImageUrl())
@@ -79,12 +79,12 @@ public class QuarantineListAdapter extends BaseAdapter {
     private class ViewHolder{
         CircularImageView image;
         TextView nameView;
-        TextView ageView;
+        TextView dateView;
 
         public ViewHolder(View view){
             image = (CircularImageView) view.findViewById(R.id.image);
             nameView = (TextView) view.findViewById(R.id.name);
-            ageView = (TextView) view.findViewById(R.id.age);
+            dateView = (TextView) view.findViewById(R.id.date);
         }
     }
 }

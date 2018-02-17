@@ -25,11 +25,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view){
-        if(validate()){
+        //if(validate()){
             Intent i = new Intent(this, MainActivity.class);
             this.finish();
             startActivity(i);
-        }
+        //}
     }
 
     private boolean validate(){
