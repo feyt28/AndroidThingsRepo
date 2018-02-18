@@ -15,6 +15,8 @@ public class ProfileActivity extends AppCompatActivity {
     private CircularImageView imageView;
     private TextView name;
     private Person person;
+    private TextView contactno;
+    private TextView bDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class ProfileActivity extends AppCompatActivity {
     private void init(){
         imageView = (CircularImageView)findViewById(R.id.profile);
         name = (TextView)findViewById(R.id.name);
+        contactno = (TextView)findViewById(R.id.contactno);
+        bDate = (TextView)findViewById(R.id.bDate);
 
         name.setText(person.getfName() + " " + person.getlName());
         Picasso.with(this)
@@ -36,5 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .centerCrop()
                 .error(R.mipmap.ic_launcher_round)
                 .into(imageView);
+        contactno.setText(person.getContactNo());
+        bDate.setText(person.getDateOfBirth());
     }
 }

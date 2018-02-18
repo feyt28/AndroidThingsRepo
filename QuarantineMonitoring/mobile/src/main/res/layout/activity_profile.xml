@@ -48,14 +48,34 @@
 
 
             <TextView
-                android:id="@+id/name"
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:text="Laxman Marothiya"
+            android:textColor="#fff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/contactno"
+                android:layout_below="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:text="Laxman Marothiya"
+                android:text="Contact No"
                 android:textColor="#fff"
-                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bDate"
+                android:layout_below="@+id/contactno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="bDate"
+                android:textColor="#fff"
                 android:textStyle="bold" />
 
         </RelativeLayout>

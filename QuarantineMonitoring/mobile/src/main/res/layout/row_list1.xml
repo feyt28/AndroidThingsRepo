@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/view_background"
@@ -14,12 +15,12 @@
 
         <ImageView
             android:id="@+id/delete_icon"
-            android:layout_width="@dimen/ic_delete"
-            android:layout_height="@dimen/ic_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/padd_10"
-            android:src="@android:drawable/ic_menu_delete"
+            android:src="@drawable/ic_delete"
             android:backgroundTintMode="@color/white"/>
 
         <TextView
@@ -29,8 +30,9 @@
             android:layout_marginRight="@dimen/padd_10"
             android:layout_toLeftOf="@id/delete_icon"
             android:text="Delete"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
 
@@ -50,12 +52,6 @@
             android:id="@+id/image"
             app:civ_border_color="#EEEEEE"
             app:civ_border_width="4dp"/>
-
-        <!--<ImageView-->
-        <!--android:layout_width="70dp"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:id="@+id/image"-->
-        <!--android:src="@mipmap/ic_launcher_round"/>-->
 
         <LinearLayout
             android:layout_width="wrap_content"
