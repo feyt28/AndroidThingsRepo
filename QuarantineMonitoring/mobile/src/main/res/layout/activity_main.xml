@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/coordinator_layout"
     tools:context="dev.aot.markkevindalbios.quarantinemonitoring.MainActivity">
 
     <include layout="@layout/content_main" />
@@ -14,6 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:backgroundTint="@color/orange"
+        app:srcCompat="@drawable/ic_person_add_black_24dp"
+        android:tint="#fff"/>
 
 </android.support.design.widget.CoordinatorLayout>

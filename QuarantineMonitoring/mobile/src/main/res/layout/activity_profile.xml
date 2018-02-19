@@ -18,13 +18,11 @@
             android:layout_height="150dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
-
             android:src="@drawable/nav_menu_header_bg"
             app:srcCompat="@drawable/nav_menu_header_bg" />
 
         <com.mikhaellopez.circularimageview.CircularImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-
             android:clickable="true"
             app:civ_border_width="3dp"
             app:civ_border_color="#FFFFFFFF"
@@ -50,14 +48,34 @@
 
 
             <TextView
-                android:id="@+id/name"
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:text="Laxman Marothiya"
+            android:textColor="#fff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/contactno"
+                android:layout_below="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:text="Laxman Marothiya"
+                android:text="Contact No"
                 android:textColor="#fff"
-                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bDate"
+                android:layout_below="@+id/contactno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="bDate"
+                android:textColor="#fff"
                 android:textStyle="bold" />
 
         </RelativeLayout>

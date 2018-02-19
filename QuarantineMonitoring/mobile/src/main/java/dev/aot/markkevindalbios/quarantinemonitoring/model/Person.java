@@ -12,21 +12,25 @@ public class Person implements Serializable {
     private String fName;
     private String mName;
     private String lName;
-    private int age;
+    private String dateOfBirth;
     private String gender;
     private String imageUrl;
+    private String address;
+    private String contactNo;
 
     public Person() {
     }
 
-    public Person(String id, String fName, String mName, String lName, int age, String gender, String imageUrl) {
+    public Person(String id, String fName, String mName, String lName, String dateOfBirth, String gender, String imageUrl, String address, String contactNo) {
         this.id = id;
         this.fName = fName;
         this.mName = mName;
         this.lName = lName;
-        this.age = age;
+        this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.imageUrl = imageUrl;
+        this.address = address;
+        this.contactNo = contactNo;
     }
 
     public String getId() {
@@ -61,14 +65,6 @@ public class Person implements Serializable {
         this.lName = lName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -83,5 +79,29 @@ public class Person implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 }
