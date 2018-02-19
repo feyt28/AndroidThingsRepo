@@ -37,7 +37,7 @@ import dev.aot.markkevindalbios.quarantinemonitoring.adapter.QuarantineListAdapt
 import dev.aot.markkevindalbios.quarantinemonitoring.adapter.RecyclerItemTouchHelper;
 import dev.aot.markkevindalbios.quarantinemonitoring.model.Person;
 
-public class MainActivity extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener{
+public class MainActivity extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
     private static final String TAG = MainActivity.class.getCanonicalName();
     private FirebaseDatabase database;
@@ -101,13 +101,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.setting:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
                 break;
             case R.id.logout:
-                Intent i = new Intent(this, LoginActivity.class);
+                Intent done = new Intent(this, LoginActivity.class);
                 this.finish();
-                startActivity(i);
+                startActivity(done);
                 break;
-                default:
+            default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
         loadQuarantineList();
     }
 
-    private void loadRecycler(){
+    private void loadRecycler() {
 //        adapter = new QuarantineAdapter(this, list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
     }
 
-    private void loadQuarantineList(){
+    private void loadQuarantineList() {
 
         Log.i(TAG, "Loading Quarantine list");
         dbRef = database.getReference("Quarantines");
@@ -140,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 list = new ArrayList<Person>();
-                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Person person = postSnapshot.getValue(Person.class);
                     list.add(person);
                 }
@@ -156,8 +158,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
             }
         });
     }
-
-
 
 
     @Override
