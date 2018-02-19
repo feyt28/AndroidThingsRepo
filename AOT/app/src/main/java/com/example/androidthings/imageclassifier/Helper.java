@@ -46,24 +46,24 @@ import java.util.PriorityQueue;
 public class Helper {
 
     //Using ImageNet
-    public static final int IMAGE_SIZE = 224;
-    public static final int IMAGE_MEAN = 117;
-    public static final float IMAGE_STD = 1;
-    public static final String LABELS_FILE = "imagenet_comp_graph_label_strings.txt";
-    public static final String MODEL_FILE = "file:///android_asset/tensorflow_inception_graph.pb";
-    public static final String INPUT_NAME = "input:0";
-    public static final String OUTPUT_OPERATION = "output";
-    public static final String OUTPUT_NAME = OUTPUT_OPERATION + ":0";
+//    public static final int IMAGE_SIZE = 224;
+//    public static final int IMAGE_MEAN = 117;
+//    public static final float IMAGE_STD = 1;
+//    public static final String LABELS_FILE = "imagenet_comp_graph_label_strings.txt";
+//    public static final String MODEL_FILE = "file:///android_asset/tensorflow_inception_graph.pb";
+//    public static final String INPUT_NAME = "input:0";
+//    public static final String OUTPUT_OPERATION = "output";
+//    public static final String OUTPUT_NAME = OUTPUT_OPERATION + ":0";
 
     //Using Trained Images
-//    public static final int IMAGE_SIZE = 299;
-//    public static final int IMAGE_MEAN = 128;
-//    public static final float IMAGE_STD = 128f;
-//    public static final String LABELS_FILE = "retrained_labels.txt";
-//    public static final String MODEL_FILE = "file:///android_asset/rounded_graph.pb";
-//    public static final String INPUT_NAME = "Mul";
-//    public static final String OUTPUT_OPERATION = "final_result";
-//    public static final String OUTPUT_NAME = OUTPUT_OPERATION;
+    public static final int IMAGE_SIZE = 299;
+    public static final int IMAGE_MEAN = 128;
+    public static final float IMAGE_STD = 128f;
+    public static final String LABELS_FILE = "retrained_labels.txt";
+    public static final String MODEL_FILE = "file:///android_asset/rounded_graph.pb";
+    public static final String INPUT_NAME = "Mul";
+    public static final String OUTPUT_OPERATION = "final_result";
+    public static final String OUTPUT_NAME = OUTPUT_OPERATION;
 
     public static String[] OUTPUT_NAMES = {OUTPUT_NAME};
     public static long[] NETWORK_STRUCTURE = {1, IMAGE_SIZE, IMAGE_SIZE, 3};

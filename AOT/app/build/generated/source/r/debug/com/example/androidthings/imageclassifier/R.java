@@ -45,11 +45,15 @@ public final class R {
     public static final int control_background=0x7f020000;
   }
   public static final class drawable {
-    public static final int bomberman=0x7f030000;
-    public static final int cat=0x7f030001;
-    public static final int inuyasha=0x7f030002;
-    public static final int mario=0x7f030003;
-    public static final int mvsb=0x7f030004;
+    public static final int angelina=0x7f030000;
+    public static final int bomberman=0x7f030001;
+    public static final int bradpitt=0x7f030002;
+    public static final int cat=0x7f030003;
+    public static final int inuyasha=0x7f030004;
+    public static final int mario=0x7f030005;
+    public static final int mvsb=0x7f030006;
+    public static final int quarantine_icon=0x7f030007;
+    public static final int rick=0x7f030008;
   }
   public static final class id {
     public static final int container=0x7f040000;

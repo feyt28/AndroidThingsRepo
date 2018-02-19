@@ -16,6 +16,7 @@
 package com.example.androidthings.imageclassifier;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -47,6 +48,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -71,6 +73,9 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
     private ButtonInputDriver mButtonDriver;
     private Gpio mReadyLED;
 
+    private static int time_trigger;
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +88,13 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
         mResultViews[1] = (TextView) findViewById(R.id.result2);
         mResultViews[2] = (TextView) findViewById(R.id.result3);
 
+        progressDialog = new ProgressDialog(this);
         init();
+    }
+
+    private void setTimeTrigger(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference settingsRef = database.getReference("Settings");
     }
 
     private void init() {
@@ -102,13 +113,10 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
             @Override
             public void onClick(View v) {
                 if (mReady.get()) {
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference settingsRef = database.getReference("Settings");
-
-                    //Time in minutes
-                    settingsRef.child("Time Trigger").setValue(5);
-
                     Log.i(TAG, "Taking photo");
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Processing Image");
+                    progressDialog.show();
                     setReady(false);
                     mBackgroundHandler.post(mBackgroundClickHandler);
                 } else {
@@ -184,7 +192,10 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
             if (mTtsEngine != null) {
                 mTtsSpeaker.speakShutterSound(mTtsEngine);
             }
-            mCameraHandler.takePicture();
+            boolean result = mCameraHandler.takePicture();
+            if(!result){
+                processRecognition();
+            }
         }
     };
 
@@ -210,6 +221,10 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
         Log.d(TAG, "Received key up: " + keyCode + ". Ready = " + mReady.get());
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
             if (mReady.get()) {
+                Log.i(TAG, "Taking photo");
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Processing Image");
+                progressDialog.show();
                 setReady(false);
                 mBackgroundHandler.post(mBackgroundClickHandler);
             } else {
@@ -220,7 +235,7 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
         return super.onKeyUp(keyCode, event);
     }
 
-    private void setReady(boolean ready) {
+    public void setReady(boolean ready) {
         mReady.set(ready);
         if (mReadyLED != null) {
             try {
@@ -236,10 +251,7 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
         final Bitmap bitmap;
         try (Image image = reader.acquireNextImage()) {
 
-            //bitmap = mImagePreprocessor.preprocessImage(image);
-            //TODO
-            //FOR image testing only
-            bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.cat);
+            bitmap = mImagePreprocessor.preprocessImage(image);
         }
 
         runOnUiThread(new Runnable() {
@@ -258,7 +270,7 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
         } else {
             // if theres no TTS, we don't need to wait until the utterance is spoken, so we set
             // to ready right away.
-            setReady(true);
+            //setReady(true);
         }
 
         runOnUiThread(new Runnable() {
@@ -267,11 +279,71 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
                 for (int i = 0; i < mResultViews.length; i++) {
                     if (results.size() > i) {
                         Classifier.Recognition r = results.get(i);
-                        mResultViews[i].setText(r.getTitle() + " : " + r.getConfidence().toString());
+                        //mResultViews[i].setText(r.getTitle() + " : " + r.getConfidence().toString());
+                        mResultViews[i].setText(r.getTitle());
                     } else {
                         mResultViews[i].setText(null);
                     }
                 }
+                progressDialog.dismiss();
+                setReady(true);
+            }
+        });
+    }
+
+    private void processRecognition(){
+        final Bitmap bitmap;
+
+        //randomize images
+        Random rn = new Random();
+        switch (rn.nextInt(3) + 1){
+            case 1:
+                bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.bradpitt);
+                break;
+            case 2:
+                bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.angelina);
+                break;
+            case 3:
+                bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.rick);
+                break;
+            default:
+                bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.rick);
+                break;
+        }
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mImage.setImageBitmap(bitmap);
+            }
+        });
+
+        final List<Classifier.Recognition> results = mTensorFlowClassifier.doRecognize(bitmap);
+
+        Log.d(TAG, "Got the following results from Tensorflow: " + results);
+        if (mTtsEngine != null) {
+            // speak out loud the result of the image recognition
+            mTtsSpeaker.speakResults(mTtsEngine, results);
+        } else {
+            // if theres no TTS, we don't need to wait until the utterance is spoken, so we set
+            // to ready right away.
+            //setReady(true);
+        }
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < mResultViews.length; i++) {
+                    if (results.size() > i) {
+                        Classifier.Recognition r = results.get(i);
+                        //mResultViews[i].setText(r.getTitle() + " : " + r.getConfidence().toString());
+                        mResultViews[i].setText(r.getTitle() );
+                    } else {
+                        mResultViews[i].setText(null);
+                    }
+                }
+                progressDialog.dismiss();
+                setReady(true);
             }
         });
     }

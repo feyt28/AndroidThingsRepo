@@ -21,6 +21,7 @@ import android.os.Trace;
 import android.util.Log;
 
 import com.example.androidthings.imageclassifier.Helper;
+import com.example.androidthings.imageclassifier.ImageClassifierActivity;
 
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
 
@@ -79,7 +80,7 @@ public class TensorFlowImageClassifier implements Classifier {
      *              and power consuming.
      */
     public List<Classifier.Recognition> doRecognize(Bitmap image) {
-        Log.d(TAG, "nisud sa doRecognize");
+        Log.d(TAG, "Start recognition...");
         float[] pixels = Helper.getPixels(image, intValues, floatValues);
 
         // Feed the pixels of the image into the TensorFlow Neural Network

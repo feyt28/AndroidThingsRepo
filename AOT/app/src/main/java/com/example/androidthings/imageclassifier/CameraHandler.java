@@ -31,6 +31,7 @@ import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.ImageReader;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.util.Size;
 
@@ -91,6 +92,16 @@ public class CameraHandler {
                 imageAvailableListener, backgroundHandler);
         // Open the camera resource
         try {
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             manager.openCamera(id, mStateCallback, backgroundHandler);
         } catch (CameraAccessException cae) {
             Log.d(TAG, "Camera access exception", cae);
@@ -126,10 +137,10 @@ public class CameraHandler {
     /**
      * Begin a still image capture
      */
-    public void takePicture() {
+    public boolean takePicture() {
         if (mCameraDevice == null) {
             Log.w(TAG, "Cannot capture image. Camera not initialized.");
-            return;
+            return false;
         }
         // Here, we create a CameraCaptureSession for capturing still images.
         try {
@@ -137,8 +148,10 @@ public class CameraHandler {
                     Collections.singletonList(mImageReader.getSurface()),
                     mSessionCallback,
                     null);
+            return true;
         } catch (CameraAccessException cae) {
             Log.d(TAG, "access exception while preparing pic", cae);
+            return false;
         }
     }
     /**

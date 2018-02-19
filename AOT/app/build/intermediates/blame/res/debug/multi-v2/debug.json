@@ -544,6 +544,22 @@
             ]
         },
         {
+            "outputFile": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/res/merged/debug/values-v23_values-v23.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/markie26/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/c4d31ac06a4be314b3d7255d801c3c2d/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/res/merged/debug/values-bs_values-bs.arsc.flat",
             "map": [
                 {

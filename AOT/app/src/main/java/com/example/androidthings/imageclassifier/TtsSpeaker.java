@@ -56,7 +56,7 @@ public class TtsSpeaker {
     /**
      * For multiple results, speak only the first if it has at least this much confidence
      */
-    private static final float SINGLE_ANSWER_CONFIDENCE_THRESHOLD = 0.4f;
+    private static final float SINGLE_ANSWER_CONFIDENCE_THRESHOLD = 0.8f; //0.4f prev
 
     /**
      * Stores joke utterances keyed by time last spoken.
