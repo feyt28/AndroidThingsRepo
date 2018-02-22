@@ -1,10 +1,32 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/markie26/Documents/Android/AndroidThingsRepo/AOT/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-gu/values-gu.xml",
+            "outputFile": "C:\\Users\\markie26\\Documents\\Android\\AndroidThingsRepo\\AOT\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-gu\\values-gu.xml",
             "map": [
                 {
-                    "source": "/Users/markie26/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.0.4.aar/70bbc8c025a792d95f6cd6d6168378d0/res/values-gu/values.xml",
+                    "source": "C:\\Users\\markie26\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.0.4.aar\\70bbc8c025a792d95f6cd6d6168378d0\\res\\values-gu\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "285",
+                        "endColumns": "205",
+                        "endOffsets": "490"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "105",
+                        "endColumns": "205",
+                        "endOffsets": "306"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\mark.kevin.d.albios\\Documents\\AndroidThingsRepo\\AOT\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-gu\\values-gu.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\mark.kevin.d.albios\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.0.4.aar\\30bcb7c81ff1549c55bfab2745adacc8\\res\\values-gu\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

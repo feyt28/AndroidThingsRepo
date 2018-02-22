@@ -1,6 +1,7 @@
 package dev.aot.markkevindalbios.quarantinemonitoring.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by mark.kevin.d.albios on 2/1/2018.
@@ -17,11 +18,14 @@ public class Person implements Serializable {
     private String imageUrl;
     private String address;
     private String contactNo;
+    private ArrayList<Logs> pLogs;
 
     public Person() {
+        this.pLogs = new ArrayList<Logs>();
     }
 
-    public Person(String id, String fName, String mName, String lName, String dateOfBirth, String gender, String imageUrl, String address, String contactNo) {
+    public Person(String id, String fName, String mName, String lName,
+                  String dateOfBirth, String gender, String imageUrl, String address, String contactNo) {
         this.id = id;
         this.fName = fName;
         this.mName = mName;
@@ -31,6 +35,7 @@ public class Person implements Serializable {
         this.imageUrl = imageUrl;
         this.address = address;
         this.contactNo = contactNo;
+        this.pLogs = new ArrayList<Logs>();
     }
 
     public String getId() {
@@ -103,5 +108,13 @@ public class Person implements Serializable {
 
     public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
+    }
+
+    public ArrayList<Logs> getpLogs() {
+        return pLogs;
+    }
+
+    public void setpLogs(ArrayList<Logs> pLogs) {
+        this.pLogs = pLogs;
     }
 }

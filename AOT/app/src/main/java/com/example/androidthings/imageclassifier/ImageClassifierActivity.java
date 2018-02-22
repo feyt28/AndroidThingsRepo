@@ -42,8 +42,11 @@ import com.google.android.things.contrib.driver.button.Button;
 import com.google.android.things.contrib.driver.button.ButtonInputDriver;
 import com.google.android.things.pio.Gpio;
 import com.google.android.things.pio.PeripheralManagerService;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -75,6 +78,7 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
 
     private static int time_trigger;
     private ProgressDialog progressDialog;
+    private static long TIME_TRIGGER = 300000;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -89,12 +93,24 @@ public class ImageClassifierActivity extends Activity implements ImageReader.OnI
         mResultViews[2] = (TextView) findViewById(R.id.result3);
 
         progressDialog = new ProgressDialog(this);
+        setTimeTrigger();
         init();
     }
 
     private void setTimeTrigger(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference settingsRef = database.getReference("Settings");
+        settingsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                TIME_TRIGGER = 1000 * 60 * (int) dataSnapshot.child("time_trigger").getValue();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void init() {

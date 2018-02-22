@@ -78,16 +78,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
         loadQuarantineList();
 //        loadRecycler();
 
-//        listView = (ListView) findViewById(R.id.list);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                Person person = (Person) adapterView.getItemAtPosition(position);
-//                Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
-//                profileIntent.putExtra("profile", person);
-//                startActivity(profileIntent);
-//            }
-//        });
     }
 
     @Override
@@ -122,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
     }
 
     private void loadRecycler() {
-//        adapter = new QuarantineAdapter(this, list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setHasFixedSize(true);
@@ -147,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
                     list.add(person);
                 }
                 adapter = new QuarantineAdapter(getApplicationContext(), list);
-                //listView.setAdapter(adapter);
                 loadRecycler();
                 adapter.notifyDataSetChanged();
             }
@@ -191,11 +179,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
             });
             snackbar.setActionTextColor(Color.YELLOW);
             snackbar.show();
-//
-//            if(isReadyToBeDeleted){
-//                dbRef = database.getReference("Quarantines");
-//                dbRef.child(person.getId()).removeValue();
-//            }
+
         }
 
 

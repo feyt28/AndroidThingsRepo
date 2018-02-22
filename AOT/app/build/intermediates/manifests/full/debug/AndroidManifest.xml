@@ -46,7 +46,6 @@
         android:debuggable="true"
         android:icon="@drawable/quarantine_icon"
         android:label="@string/app_name"
-        android:testOnly="true"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         <activity
             android:name="com.example.androidthings.imageclassifier.ImageClassifierActivity"
